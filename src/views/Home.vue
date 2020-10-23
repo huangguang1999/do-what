@@ -23,6 +23,7 @@
 
 <script lang="ts">  
 import { reactive, toRefs, onUnmounted } from 'vue';
+import { useStore } from 'vuex'
 import '../style/common/button.css'
 interface DataProps {
   menu: string []; // 展示列表
@@ -36,27 +37,19 @@ export default ({
   name: 'Home',
   setup() {
     const data: DataProps = reactive({
-      menu: [
-        "一起去看部最近评分高的电影吧",
-        "叫上几个朋友玩下剧本杀鸭",
-        "今天适合出去随便散散步", 
-        "感觉可以呆在家吃着零食刷刷剧", 
-        "不会真有人要去麦当劳吃一顿吧", 
-        "这个选择就是让你再选一次", 
-      ],
-      trans: -204,
+      menu: [],
+      trans: 0,
       timer: 0,
       speed: 5,
       circle: 5,
       selectFun: () => {
-
         const height = 40.8
         let index = 0, i = 0
         const select = Math.floor(Math.random()*6)
         data.timer = setInterval(() => {
           if (index < data.circle) {
             if (data.trans > 0) {
-              data.trans = -204
+              data.trans = -(height * (data.menu.length - 1))
               index++
               return
             }
@@ -69,6 +62,8 @@ export default ({
         }, 20)
       }
     })
+    const store = useStore()
+    data.menu = Array.from(store.state.menuState)
 
     onUnmounted(() => {
       clearInterval(data.timer)
@@ -80,10 +75,10 @@ export default ({
       ...refData
     }
   },
-  mounted () {
-    const menu = Array.from((this as any).$store.state.menuState)
-    console.log(menu)
-  }
+  // mounted () {
+  //   const menu = Array.from((this as any).$store.state.menuState)
+  //   console.log(menu)
+  // }
 });
 </script>
 
@@ -91,6 +86,7 @@ export default ({
 .content {
   width: 100%;
   height: 700px;
+  margin: 0 auto;
   .content-logo {
     position: fixed;
     top: 0;
@@ -135,6 +131,7 @@ export default ({
             width: 50%;
             padding: 10px;
             text-align: center;
+            overflow: hidden;
           }
         }
       }

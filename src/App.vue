@@ -39,17 +39,18 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
   font-family: "Arial", "Microsoft YaHei", "黑体", "宋体", sans-serif;
 }
 #nav {
   padding: 10px;
   position: fixed;
-  top: 10px;
+  top: 0px;
   right: 0px;
+  background-color: rgba(220, 220, 220, 0.5);
 }
 
 #nav a {
+  height: 40.8px;
   font-weight: bold;
   color: #2c3e50;
   text-decoration: none;
@@ -58,6 +59,5 @@ html, body {
 
 #nav a.router-link-exact-active {
   color: #42b983;
-  background-color: rgba(220, 220, 220, 0.5)
 }
 </style>
