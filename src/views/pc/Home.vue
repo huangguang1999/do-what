@@ -24,7 +24,7 @@
 <script lang="ts">  
 import { reactive, toRefs, onUnmounted } from 'vue';
 import { useStore } from 'vuex'
-import '../style/common/button.css'
+import '../../style/common/button.css'
 interface DataProps {
   menu: string []; // 展示列表
   trans: number;
@@ -74,11 +74,7 @@ export default ({
     return {
       ...refData
     }
-  },
-  // mounted () {
-  //   const menu = Array.from((this as any).$store.state.menuState)
-  //   console.log(menu)
-  // }
+  }
 });
 </script>
 
@@ -110,7 +106,7 @@ export default ({
   .content-top {
     width: 100%;
     height: 70%;
-    background: url('../assets/bg.png') no-repeat;
+    background: url('../../assets/bg.png') no-repeat;
     background-size: 800px 155%;
     background-position: 50% 22%;
     .content-top-bottom {
