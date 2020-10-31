@@ -1,5 +1,6 @@
 <template>
   <div class="content">
+    
     <div class="content-logo">
       <img src="@/assets/logo.png" />
       <span>今天一起去干什么呢？</span>
@@ -9,28 +10,30 @@
         <div class="list">
           <div class="list-content" :style="'transform: translateY(' + trans + 'px)'">
             <div v-for="item in menu" :key='item' class="item">
-              {{item}}
+              ------ {{item}} ------
             </div>
           </div>  
         </div>        
       </div>
     </div>
     <div class="content-bottom">
-      <a href="#" class="btn-3d blue" @click="selectFun()">点 击</a>
+      <a-button 
+        type="primary" 
+        @click="selectFun()"
+        size="large" >
+        点 击
+      </a-button>
     </div>
   </div>
 </template>
 
 <script lang="ts">  
 import { reactive, toRefs, onUnmounted } from 'vue';
-import { useStore } from 'vuex'
-import '../../style/common/button.css'
+import { useStore } from 'vuex';
 interface DataProps {
   menu: string []; // 展示列表
   trans: number;
   timer: number;
-  speed: number;
-  circle: number;
   selectFun: (index: number) => void;
 }
 export default ({
@@ -40,26 +43,38 @@ export default ({
       menu: [],
       trans: 0,
       timer: 0,
-      speed: 5,
-      circle: 5,
       selectFun: () => {
-        const height = 40.8
+        let speed = 1 // 速度
+        const circle = 5 // 转动圈数
+        const height = 41.6 // 每个item的高度
+        const allHeight = height * (data.menu.length - 1) // 所有item的高度
         let index = 0, i = 0
-        const select = Math.floor(Math.random()*6)
+        const select = Math.floor(Math.random()*data.menu.length)
+        console.log(select)
         data.timer = setInterval(() => {
-          if (index < data.circle) {
-            if (data.trans > 0) {
-              data.trans = -(height * (data.menu.length - 1))
-              index++
-              return
+          if (index < circle - 1) {
+            // data.trans -= data.speed
+            // if (Math.abs(data.trans) >= allHeight) {
+            //   data.trans = 0
+            //   index++
+            // }
+            if (Math.abs(data.trans) >= allHeight) {
+              data.trans = 0
+              index++              
+            } else {
+              if (speed < 5) {
+                data.trans -= speed
+                speed += 0.01
+              } else {
+                data.trans -= speed
+              }
             }
-            data.trans += data.speed
           } else {
-            while(i++ < select) {
-              data.trans += height
+            while(i++ < select * height) {
+              data.trans -= 1
             }
           }
-        }, 20)
+        }, 16)
       }
     })
     const store = useStore()

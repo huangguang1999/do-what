@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Home from '../views/pc/Home.vue'
 import mHome from '../views/m/mHome.vue'
 
+// 根据不同的设备重定向到不同URL
 const redirectPath = /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i.test(navigator.userAgent) ? '/mHome' : 'Home'
 
 const routes: Array<RouteRecordRaw> = [
@@ -13,12 +14,6 @@ const routes: Array<RouteRecordRaw> = [
     path: '/Home',
     name: 'Home',
     component: Home,
-    meta: {type: 'pc'}
-  },
-  {
-    path: '/mine',
-    name: 'Mine',
-    component: () => import(/* webpackChunkName: "mine" */ '../views/pc/Mine.vue'),
     meta: {type: 'pc'}
   },
   {

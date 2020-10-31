@@ -3,8 +3,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import judgePcOrMoblie from './utils/judgePcOrMoblie'
+// Antd引入
+import 'ant-design-vue/dist/antd.less'
+import Antd from 'ant-design-vue'
 
-createApp(App).use(store).use(router).mount('#app')
+createApp(App).use(Antd).use(store).use(router).mount('#app')
 
 router.beforeEach((to, from, next) => {
   // 当移动端试图访问pc端页面时

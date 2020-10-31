@@ -4,7 +4,7 @@
   <router-view/>
 </template>
 
-<script lang="ts">
+<script>
 import mNav from './components/common/nav/mIndex.vue'
 import pcNav from './components/common/nav/pcIndex.vue'
 import judgePcOrMoblie from './utils/judgePcOrMoblie'
@@ -24,7 +24,7 @@ export default ({
 })
 </script>
 
-<style>
+<style lang="scss" scoped>
 html, body {
   width: 100%;
   height: 100%;

@@ -18,7 +18,7 @@ export default createStore({
     ]
   },
   mutations: {
-    changeMenu(state, value) {
+    changeMenu: (state, value) => {
       state.menuState = value
     }
   },
