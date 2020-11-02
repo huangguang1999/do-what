@@ -14,7 +14,11 @@ Vue3 + TypeScript 的一个小项目
 
 ## 项目截图
 
-![image-20201019085357317](https://gitee.com/huangguang1999/blog-image/raw/master/img/image-20201019085357317.png)
+![image-20201102153654701](https://gitee.com/huangguang1999/blog-image/raw/master/img/image-20201102153654701.png)
+
+![image-20201102153915265](https://gitee.com/huangguang1999/blog-image/raw/master/img/image-20201102153915265.png)
+
+[线上地址](http://119.3.174.84:8300/)
 
 
 
@@ -37,7 +41,7 @@ Vue3 + TypeScript 的一个小项目
 -   [ ] 动画优化
 -   [x] 移动端入口
 -   [x] 主题定制
--   [ ] 移动端页面
+-   [x] 移动端页面
 -   [ ] 移动端手势
 -   [ ] 首页背景选择
 

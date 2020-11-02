@@ -3,7 +3,7 @@
     
     <div class="content-logo">
       <img src="@/assets/logo.png" />
-      <span>今天一起去干什么呢？</span>
+      <span>{{title}}</span>
     </div>
     <div class="content-top">
       <div class="content-top-bottom">
@@ -34,30 +34,29 @@ interface DataProps {
   menu: string []; // 展示列表
   trans: number;
   timer: number;
+  title: string;
   selectFun: (index: number) => void;
 }
 export default ({
   name: 'Home',
   setup() {
+    const store = useStore()
     const data: DataProps = reactive({
       menu: [],
       trans: 0,
       timer: 0,
+      title: '',
       selectFun: () => {
         let speed = 1 // 速度
         const circle = 5 // 转动圈数
         const height = 41.6 // 每个item的高度
         const allHeight = height * (data.menu.length - 1) // 所有item的高度
-        let index = 0, i = 0
+        let index = 0
         const select = Math.floor(Math.random()*data.menu.length)
-        console.log(select)
+        const selectLength = select * height
         data.timer = setInterval(() => {
-          if (index < circle - 1) {
-            // data.trans -= data.speed
-            // if (Math.abs(data.trans) >= allHeight) {
-            //   data.trans = 0
-            //   index++
-            // }
+          // if判断最后一圈停下来
+          if (index < circle) {
             if (Math.abs(data.trans) >= allHeight) {
               data.trans = 0
               index++              
@@ -70,15 +69,23 @@ export default ({
               }
             }
           } else {
-            while(i++ < select * height) {
-              data.trans -= 1
+            if (Math.abs(data.trans) >= selectLength) {
+              speed = 1
+              return             
+            } else {
+              if (speed >= 1) {
+                data.trans -= speed
+                speed -= 0.1
+              } else {
+                data.trans -= speed
+              }
             }
           }
         }, 16)
       }
     })
-    const store = useStore()
     data.menu = Array.from(store.state.menuState)
+    data.title = store.state.title
 
     onUnmounted(() => {
       clearInterval(data.timer)

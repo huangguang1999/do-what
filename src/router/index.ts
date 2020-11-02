@@ -29,12 +29,6 @@ const routes: Array<RouteRecordRaw> = [
     meta: {type: 'm'}
   },
   {
-    path: '/mMine',
-    name: 'mMine',
-    component: () => import(/* webpackChunkName: "mine" */ '../views/m/mMine.vue'),
-    meta: {type: 'm'}
-  },
-  {
     path: '/mMenu',
     name: 'mMenu',
     component: () => import(/* webpackChunkName: "menu" */ '../components/menu/mIndex.vue'),

@@ -1,34 +1,33 @@
 <template>
-  <div id="nav">
-    <router-link to="/mHome">主页</router-link>
-    <router-link to="/mMine">我的</router-link>
-  </div>
+  <nav class="content-nav">
+    <a-dropdown>
+      <a class="ant-dropdown-link" @click="e => e.preventDefault()"> <AlignRightOutlined :style="{fontSize: '.3rem'}"  /> <DownOutlined /> </a>
+      <template v-slot:overlay>
+        <a-menu>
+          <a-menu-item>
+            <a href="javascript:;"><router-link to="/">主页信息</router-link></a>
+            <a href="javascript:;"><router-link to="/menu">列表修改</router-link></a>
+          </a-menu-item>
+        </a-menu>
+      </template>
+    </a-dropdown>
+  </nav>
 </template>
 
-<style lang="scss" scoped>
+<script lang="ts">
+import { AlignRightOutlined } from '@ant-design/icons-vue'
+export default ({
+  components: {
+    AlignRightOutlined
+  }
+})
+</script>
 
-#nav {
-  width: 100%;
-  height: .6rem;
+<style lang="scss" scoped>
+.content-nav {
   position: fixed;
-  bottom: 0px;
-  left: 0px;
-  background-color: #42b983;
-  display: flex;
-  a {
-    width: 100%;
-    line-height: .6rem;
-    text-align: center;
-    font-size: .2rem;
-    font-weight: bold;
-    color: #2c3e50;
-    text-decoration: none;
-  }
-  a:nth-of-type(1) {
-    border-right: 1px solid #fff
-  }
-  a.router-link-exact-active {
-    color: #fff;
-  }
+  top: 0;
+  right: 0;
+  margin: .15rem .15rem 0 0;
 }
 </style>
